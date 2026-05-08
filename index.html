@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoohRang | The Future of Ethnic Intelligence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #fdfbf7; overflow-x: hidden; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .gold-glow { box-shadow: 0 0 20px rgba(209, 191, 167, 0.3); }
+        .takeoff-line { width: 0; height: 1px; background: #8e735b; animation: thrust 2s ease-out forwards; }
+        @keyframes thrust { to { width: 150px; } }
+    </style>
+</head>
+<body>
+
+    <section class="relative h-screen w-full flex flex-col justify-center items-center text-center px-6">
+        <div class="absolute inset-0 bg-gradient-to-tr from-[#f4ece2] to-transparent opacity-60"></div>
+        
+        <div id="hero-content" class="z-10">
+            <h1 class="text-7xl md:text-9xl font-serif text-[#2c3e50] mb-4 italic opacity-0" id="title">RoohRang</h1>
+            <p class="text-xs md:text-sm font-light text-[#8e735b] tracking-[0.6em] uppercase mb-8" id="subtitle">The Future of Ethnic Intelligence</p>
+            <div class="takeoff-line mx-auto"></div>
+        </div>
+
+        <div class="absolute bottom-20 left-10 text-left z-10 hidden md:block">
+            <p class="text-[10px] text-[#8e735b] font-mono uppercase opacity-50">System: Global Edge v4.0 Active</p>
+            <p class="text-[10px] text-[#8e735b] font-mono uppercase opacity-50">Status: Thrust over the runway</p>
+        </div>
+
+        <div class="fixed bottom-10 right-10 z-50 group cursor-pointer">
+            <div class="absolute -top-16 right-0 bg-white border border-[#d1bfa7] p-3 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-48">
+                <p class="text-[11px] text-[#2c3e50]">Global Edge: "Styling is not a race, it's an inevitability."</p>
+            </div>
+            <div class="w-16 h-16 bg-[#2c3e50] rounded-full flex items-center justify-center gold-glow hover:scale-110 transition-transform duration-500">
+                <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                <svg class="w-6 h-6 text-white ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const title = document.getElementById('title');
+            const subtitle = document.getElementById('subtitle');
+            
+            // Simple animation sequence for 'Takeoff' feel
+            setTimeout(() => {
+                title.style.opacity = '1';
+                title.style.transition = 'opacity 2s ease-in-out';
+                title.style.transform = 'translateY(0)';
+            }, 500);
+        });
+    </script>
+</body>
+</html>
