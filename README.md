@@ -1,0 +1,117 @@
+[index.html](https://github.com/user-attachments/files/27556521/index.html)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoohRang | The Future of Ethnic Intelligence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #fdfbf7; overflow-x: hidden; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .gold-glow { box-shadow: 0 0 25px rgba(209, 191, 167, 0.4); }
+        .takeoff-line { width: 0; height: 1px; background: #8e735b; animation: thrust 2s ease-out forwards; }
+        @keyframes thrust { to { width: 150px; } }
+        #chat-window { display: none; transform: translateY(20px); transition: all 0.4s ease; }
+        #chat-window.active { display: flex; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+    <section class="relative h-screen w-full flex flex-col justify-center items-center text-center px-6">
+        <div class="absolute inset-0 bg-gradient-to-tr from-[#f4ece2] to-transparent opacity-60"></div>
+        
+        <div id="hero-content" class="z-10">
+            <h1 class="text-7xl md:text-9xl font-serif text-[#2c3e50] mb-4 italic opacity-0" id="title">RoohRang</h1>
+            <p class="text-xs md:text-sm font-light text-[#8e735b] tracking-[0.6em] uppercase mb-8" id="subtitle">The Future of Ethnic Intelligence</p>
+            <div class="takeoff-line mx-auto"></div>
+        </div>
+
+        <div class="fixed bottom-10 right-10 z-50 flex flex-col items-end">
+            <div id="chat-window" class="w-80 h-96 bg-white/90 backdrop-blur-md border border-[#d1bfa7] mb-4 rounded-2xl flex-col shadow-2xl overflow-hidden">
+                <div class="p-4 border-b border-[#f4ece2] bg-[#2c3e50] text-white">
+                    <p class="text-xs tracking-widest uppercase font-semibold">Global Edge v5.1</p>
+                    <p class="text-[10px] opacity-70">Sovereign Mode Active</p>
+                </div>
+                <div id="chat-messages" class="flex-1 p-4 overflow-y-auto text-sm space-y-3 font-light text-[#2c3e50]">
+                    <p class="bg-[#f4ece2] p-2 rounded-lg italic">"Styling is not a race, it's an inevitability. How may I refine your vision today?"</p>
+                </div>
+                <div class="p-4 border-t border-[#f4ece2] flex">
+                    <input type="text" id="user-input" placeholder="Consult the intelligence..." class="flex-1 text-xs outline-none bg-transparent placeholder:italic">
+                    <button id="send-btn" class="ml-2 text-[#8e735b] hover:text-[#2c3e50] transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </button>
+                </div>
+            </div>
+
+            <div id="chat-toggle" class="w-16 h-16 bg-[#2c3e50] rounded-full flex items-center justify-center gold-glow hover:scale-110 transition-transform duration-500 cursor-pointer">
+                <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse mr-1"></div>
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+            </div>
+        </div>
+
+        <div class="absolute bottom-20 left-10 text-left z-10 hidden md:block">
+            <p class="text-[10px] text-[#8e735b] font-mono uppercase opacity-50">System: Global Edge v5.1 High-Latency Link</p>
+            <p class="text-[10px] text-[#8e735b] font-mono uppercase opacity-50">Status: Thrust over the runway [Lucknow Direct]</p>
+        </div>
+    </section>
+
+    <script>
+        const chatToggle = document.getElementById('chat-toggle');
+        const chatWindow = document.getElementById('chat-window');
+        const sendBtn = document.getElementById('send-btn');
+        const userInput = document.getElementById('user-input');
+        const messages = document.getElementById('chat-messages');
+
+        // Toggle Chat Window
+        chatToggle.addEventListener('click', () => {
+            chatWindow.classList.toggle('active');
+            chatWindow.style.display = chatWindow.classList.contains('active') ? 'flex' : 'none';
+        });
+
+        // Neural Link Communication
+        async function sendMessage() {
+            const text = userInput.value.trim();
+            if (!text) return;
+
+            // Add user message
+            messages.innerHTML += `<p class="text-right font-semibold">" ${text} "</p>`;
+            userInput.value = '';
+            
+            // Thinking state
+            const thinking = document.createElement('p');
+            thinking.className = 'text-xs italic text-[#8e735b] animate-pulse';
+            thinking.innerText = 'Consulting Global Edge...';
+            messages.appendChild(thinking);
+            messages.scrollTop = messages.scrollHeight;
+
+            try {
+                const response = await fetch('https://hook.us2.make.com/w64o7474wvl6zr5eyoqr191og4s5r0ll', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: text })
+                });
+
+                const data = await response.text(); // Make.com returns text from Webhook Response
+                thinking.remove();
+                messages.innerHTML += `<p class="bg-[#f4ece2] p-2 rounded-lg border-l-2 border-[#8e735b]">${data}</p>`;
+            } catch (error) {
+                thinking.innerText = 'Neural link disrupted. Re-thrusting...';
+            }
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        sendBtn.addEventListener('click', sendMessage);
+        userInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                const title = document.getElementById('title');
+                title.style.opacity = '1';
+                title.style.transition = 'opacity 2s ease-in-out';
+            }, 500);
+        });
+    </script>
+</body>
+</html>
