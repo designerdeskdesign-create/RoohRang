@@ -25,16 +25,50 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Floating Diamond UX */
-        #chat-toggle {
-            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        /* Lethal Diamond Toggle with Neural Pulse */
+        .diamond-portal {
+            position: relative;
+            width: 70px;
+            height: 70px;
             background: #2c3e50;
-            box-shadow: 0 0 30px rgba(183, 110, 121, 0.3);
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 0 20px rgba(183, 110, 121, 0.4);
+        }
+
+        .diamond-portal::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            background: rgba(183, 110, 121, 0.2);
+            animation: neuralPulse 2s infinite;
+        }
+
+        @keyframes neuralPulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        .portal-label {
+            position: absolute;
+            right: 85px;
+            bottom: 22px;
+            font-size: 10px;
+            letter-spacing: 0.4em;
+            color: #8e735b;
+            text-transform: uppercase;
+            opacity: 0.7;
+            white-space: nowrap;
         }
 
         #chat-window { display: none; transform: translateY(20px); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         #chat-window.active { display: flex; transform: translateY(0); }
-        
         .glow-border { border-left: 2px solid #B76E79; }
     </style>
 </head>
@@ -66,8 +100,11 @@
                 </div>
             </div>
 
-            <div id="chat-toggle" class="w-16 h-16 flex items-center justify-center hover:scale-110 transition-all duration-500 cursor-pointer group">
-                <div class="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse shadow-[0_0_10px_#4ade80]"></div>
+            <div class="relative flex items-center">
+                <span class="portal-label">Consult Intelligence</span>
+                <div id="chat-toggle" class="diamond-portal hover:scale-110">
+                    <div class="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse shadow-[0_0_10px_#4ade80]"></div>
+                </div>
             </div>
         </div>
 
