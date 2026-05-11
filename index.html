@@ -1,167 +1,523 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RoohRang | The Future of Ethnic Intelligence</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; background-color: #fdfbf7; overflow-x: hidden; }
-        .font-serif { font-family: 'Playfair Display', serif; }
-        
-        /* The Rose Gold Signature Effect */
-        .signature-gold {
-            font-family: 'Mrs Saint Delafield', cursive;
-            background: linear-gradient(to right, #B76E79 0%, #FFD1DC 50%, #B76E79 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            opacity: 0;
-            transform: translateY(5px);
-            animation: signatureReveal 2.5s ease-out 1.5s forwards;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        @keyframes signatureReveal {
-            to { opacity: 1; transform: translateY(0); }
-        }
+<title>AI Operator | Use AI Like a Business Weapon</title>
 
-        /* Lethal Diamond Toggle with Neural Pulse */
-        .diamond-portal {
-            position: relative;
-            width: 70px;
-            height: 70px;
-            background: #2c3e50;
-            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 0 20px rgba(183, 110, 121, 0.4);
-        }
+<script src="https://cdn.tailwindcss.com"></script>
 
-        .diamond-portal::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-            background: rgba(183, 110, 121, 0.2);
-            animation: neuralPulse 2s infinite;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-        @keyframes neuralPulse {
-            0% { transform: scale(1); opacity: 0.8; }
-            100% { transform: scale(1.5); opacity: 0; }
-        }
+<style>
 
-        .portal-label {
-            position: absolute;
-            right: 85px;
-            bottom: 22px;
-            font-size: 10px;
-            letter-spacing: 0.4em;
-            color: #8e735b;
-            text-transform: uppercase;
-            opacity: 0.7;
-            white-space: nowrap;
-        }
+:root{
+--bg:#0A0A0A;
+--card:#121212;
+--gold:#D4AF37;
+--gold-soft:#f1d37e;
+--line:rgba(212,175,55,.18);
+}
 
-        #chat-window { display: none; transform: translateY(20px); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        #chat-window.active { display: flex; transform: translateY(0); }
-        .glow-border { border-left: 2px solid #B76E79; }
-    </style>
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:var(--bg);
+color:#fff;
+font-family:'Inter',sans-serif;
+overflow-x:hidden;
+}
+
+.playfair{
+font-family:'Playfair Display',serif;
+}
+
+.gold-gradient{
+background:linear-gradient(135deg,var(--gold),var(--gold-soft),var(--gold));
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.glass{
+background:rgba(255,255,255,.03);
+backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,.06);
+}
+
+.btn-gold{
+background:var(--gold);
+color:#000;
+font-weight:700;
+transition:.25s ease;
+}
+
+.btn-gold:hover{
+transform:translateY(-2px);
+filter:brightness(1.05);
+}
+
+.btn-dark{
+border:1px solid var(--line);
+transition:.25s ease;
+}
+
+.btn-dark:hover{
+background:rgba(255,255,255,.04);
+}
+
+.hero-bg{
+background:
+radial-gradient(circle at top right, rgba(212,175,55,.14), transparent 30%),
+radial-gradient(circle at left center, rgba(255,255,255,.04), transparent 20%),
+linear-gradient(180deg,#0A0A0A,#111,#0A0A0A);
+}
+
+.card{
+transition:.25s ease;
+}
+
+.card:hover{
+transform:translateY(-6px);
+border-color:rgba(212,175,55,.45);
+}
+
+.smallcap{
+letter-spacing:.22em;
+text-transform:uppercase;
+font-size:11px;
+}
+
+.blur-glow{
+position:absolute;
+width:420px;
+height:420px;
+background:rgba(212,175,55,.08);
+filter:blur(120px);
+z-index:-1;
+}
+
+</style>
 </head>
+
 <body>
 
-    <section class="relative h-screen w-full flex flex-col justify-center items-center text-center px-6">
-        <div class="absolute inset-0 bg-gradient-to-tr from-[#f4ece2] to-transparent opacity-60"></div>
-        
-        <div id="hero-content" class="z-10">
-            <h1 class="text-7xl md:text-9xl font-serif text-[#2c3e50] mb-2 italic opacity-0 transition-opacity duration-1000" id="title">RoohRang</h1>
-            <div class="signature-gold text-3xl md:text-5xl mb-6">by Kritika</div>
-            <p class="text-[10px] md:text-xs font-light text-[#8e735b] tracking-[0.8em] uppercase mb-8" id="subtitle">The Future of Ethnic Intelligence</p>
-        </div>
+<!-- NAV -->
 
-        <div class="fixed bottom-10 right-10 z-50 flex flex-col items-end">
-            <div id="chat-window" class="w-85 h-112 bg-white/95 backdrop-blur-xl border border-[#d1bfa7] mb-6 rounded-3xl flex-col shadow-2xl overflow-hidden">
-                <div class="p-5 border-b border-[#f4ece2] bg-[#2c3e50] text-white">
-                    <p class="text-[10px] tracking-[0.3em] uppercase font-semibold">Global Edge v5.1</p>
-                    <p class="text-[9px] opacity-60 uppercase">Lead Concierge • Sovereign Mode</p>
-                </div>
-                <div id="chat-messages" class="flex-1 p-5 overflow-y-auto text-sm space-y-4 font-light text-[#2c3e50]">
-                    <p class="bg-[#f4ece2] p-3 rounded-2xl italic leading-relaxed">"Styling is not a race, it's an inevitability. How may I refine your vision today?"</p>
-                </div>
-                <div class="p-5 border-t border-[#f4ece2] flex items-center">
-                    <input type="text" id="user-input" placeholder="Consult the intelligence..." class="flex-1 text-xs outline-none bg-transparent placeholder:italic text-[#2c3e50]">
-                    <button id="send-btn" class="ml-3 text-[#B76E79] hover:text-[#2c3e50] transition-transform hover:scale-125">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                    </button>
-                </div>
-            </div>
+<nav class="fixed top-0 left-0 w-full z-50 bg-black/70 backdrop-blur-md border-b border-[#D4AF37]/10">
+<div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 
-            <div class="relative flex items-center">
-                <span class="portal-label">Consult Intelligence</span>
-                <div id="chat-toggle" class="diamond-portal hover:scale-110">
-                    <div class="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse shadow-[0_0_10px_#4ade80]"></div>
-                </div>
-            </div>
-        </div>
+<div class="flex items-center gap-3">
 
-        <div class="absolute bottom-10 left-10 text-left z-10 hidden md:block">
-            <p class="text-[9px] text-[#8e735b] font-mono uppercase opacity-40 tracking-widest">System: Global Edge v5.1 High-Latency Neural Link</p>
-        </div>
-    </section>
+<div class="w-10 h-10 rounded-full border border-[#D4AF37]/40 flex items-center justify-center text-[#D4AF37] font-bold">
+A
+</div>
 
-    <script>
-        const chatToggle = document.getElementById('chat-toggle');
-        const chatWindow = document.getElementById('chat-window');
-        const sendBtn = document.getElementById('send-btn');
-        const userInput = document.getElementById('user-input');
-        const messages = document.getElementById('chat-messages');
+<div>
+<p class="playfair text-xl gold-gradient leading-none">
+AI Operator
+</p>
 
-        chatToggle.addEventListener('click', () => {
-            chatWindow.classList.toggle('active');
-            chatWindow.style.display = chatWindow.classList.contains('active') ? 'flex' : 'none';
-        });
+<p class="text-[10px] tracking-[0.3em] uppercase text-gray-500">
+AI Income Infrastructure
+</p>
+</div>
 
-        async function sendMessage() {
-            const text = userInput.value.trim();
-            if (!text) return;
+</div>
 
-            messages.innerHTML += `<div class="flex justify-end"><p class="bg-[#2c3e50] text-white p-3 rounded-2xl text-xs max-w-[80%] shadow-lg"> ${text} </p></div>`;
-            userInput.value = '';
-            
-            const thinking = document.createElement('p');
-            thinking.className = 'text-[10px] uppercase tracking-widest text-[#B76E79] animate-pulse mt-2';
-            thinking.innerText = 'Analyzing Heritage...';
-            messages.appendChild(thinking);
-            messages.scrollTop = messages.scrollHeight;
+<div class="hidden md:flex gap-8 text-sm text-gray-400">
 
-            try {
-                const response = await fetch('https://hook.us2.make.com/w64o7474wvl6zr5eyoqr191og4s5r0ll', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: text })
-                });
+<a href="#systems" class="hover:text-[#D4AF37]">
+Systems
+</a>
 
-                const data = await response.text();
-                thinking.remove();
-                messages.innerHTML += `<div class="glow-border bg-[#f4ece2]/50 p-4 rounded-2xl text-xs leading-relaxed shadow-sm">${data}</div>`;
-            } catch (error) {
-                thinking.innerText = 'Link unstable. Retrying connection...';
-            }
-            messages.scrollTop = messages.scrollHeight;
-        }
+<a href="#vault" class="hover:text-[#D4AF37]">
+Vault
+</a>
 
-        sendBtn.addEventListener('click', sendMessage);
-        userInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
+<a href="#access" class="hover:text-[#D4AF37]">
+Access
+</a>
 
-        document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                document.getElementById('title').style.opacity = '1';
-            }, 300);
-        });
-    </script>
+</div>
+
+<a href="#vault"
+class="btn-gold px-5 py-2 rounded-full text-xs">
+Enter Vault
+</a>
+
+</div>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero-bg min-h-screen flex items-center pt-28 relative overflow-hidden">
+
+<div class="blur-glow top-0 right-0"></div>
+
+<div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+
+<div>
+
+<p class="smallcap text-[#D4AF37] mb-5">
+Built for founders • freelancers • digital operators
+</p>
+
+<h1 class="playfair text-5xl md:text-7xl leading-tight mb-7">
+
+Use AI Like<br>
+
+<span class="gold-gradient">
+a Business Weapon.
+</span>
+
+</h1>
+
+<p class="text-gray-400 text-lg leading-relaxed max-w-xl mb-10">
+
+Systems, prompts and execution frameworks designed to turn AI into income, leverage and digital advantage.
+
+</p>
+
+<div class="flex flex-col sm:flex-row gap-4">
+
+<a href="#vault"
+class="btn-gold px-8 py-4 rounded-full text-center">
+Access The Vault
+</a>
+
+<a href="#systems"
+class="btn-dark px-8 py-4 rounded-full text-center">
+Explore Systems
+</a>
+
+</div>
+
+<p class="mt-7 text-sm text-gray-500">
+
+Most people use AI for content.<br>
+Operators use it for cashflow.
+
+</p>
+
+</div>
+
+<!-- RIGHT PANEL -->
+
+<div class="glass rounded-3xl p-8 border border-[#D4AF37]/10">
+
+<p class="smallcap text-[#D4AF37] mb-5">
+Operator Stack
+</p>
+
+<div class="space-y-5">
+
+<div class="border-b border-white/5 pb-4">
+<p class="font-semibold text-lg">
+AI Money Prompts
+</p>
+<p class="text-sm text-gray-400">
+High-conversion prompts for digital income
+</p>
+</div>
+
+<div class="border-b border-white/5 pb-4">
+<p class="font-semibold text-lg">
+AI Operator OS
+</p>
+<p class="text-sm text-gray-400">
+Execution systems for leverage & automation
+</p>
+</div>
+
+<div>
+<p class="font-semibold text-lg">
+Operator Bundle
+</p>
+<p class="text-sm text-gray-400">
+Combined assets for serious digital operators
+</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+</section>
+
+<!-- MARKET SHIFT -->
+
+<section id="systems" class="py-24">
+
+<div class="max-w-7xl mx-auto px-6">
+
+<div class="text-center mb-16">
+
+<p class="smallcap text-[#D4AF37] mb-4">
+Market Shift
+</p>
+
+<h2 class="playfair text-4xl md:text-6xl leading-tight">
+
+Most People Use AI<br>
+
+<span class="gold-gradient">
+For Content.
+</span>
+
+</h2>
+
+<p class="text-gray-500 mt-6 text-lg">
+Operators use AI to create leverage, systems and cashflow.
+</p>
+
+</div>
+
+<div class="grid md:grid-cols-3 gap-8">
+
+<div class="card glass rounded-3xl p-8">
+<p class="text-[#D4AF37] text-3xl mb-5">01</p>
+
+<h3 class="playfair text-2xl mb-4">
+AI Money Prompts
+</h3>
+
+<p class="text-gray-400 leading-relaxed">
+Battle-tested prompts built for monetization, offers, sales and positioning.
+</p>
+</div>
+
+<div class="card glass rounded-3xl p-8">
+<p class="text-[#D4AF37] text-3xl mb-5">02</p>
+
+<h3 class="playfair text-2xl mb-4">
+Automation Systems
+</h3>
+
+<p class="text-gray-400 leading-relaxed">
+Leverage workflows that reduce manual effort and increase output.
+</p>
+</div>
+
+<div class="card glass rounded-3xl p-8">
+<p class="text-[#D4AF37] text-3xl mb-5">03</p>
+
+<h3 class="playfair text-2xl mb-4">
+Execution Frameworks
+</h3>
+
+<p class="text-gray-400 leading-relaxed">
+Clear systems for operators who want momentum instead of confusion.
+</p>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<!-- PRODUCTS -->
+
+<section id="vault" class="py-24 bg-black/25 border-y border-[#D4AF37]/10">
+
+<div class="max-w-7xl mx-auto px-6">
+
+<div class="text-center mb-16">
+
+<p class="smallcap text-[#D4AF37] mb-4">
+Operator Vault
+</p>
+
+<h2 class="playfair text-4xl md:text-6xl">
+Revenue-Ready Assets
+</h2>
+
+</div>
+
+<div class="grid md:grid-cols-3 gap-8">
+
+<!-- PRODUCT 1 -->
+
+<div class="card glass rounded-3xl p-8">
+
+<p class="text-[#D4AF37] text-2xl mb-5">
+01
+</p>
+
+<h3 class="playfair text-2xl mb-4">
+50 AI Money Prompts
+</h3>
+
+<p class="text-gray-400 text-sm leading-relaxed mb-7">
+High-conversion prompts engineered for offers, positioning and digital income.
+</p>
+
+<div class="flex items-end justify-between mb-7">
+
+<div>
+<p class="text-gray-500 text-sm">
+Starting at
+</p>
+
+<p class="text-3xl font-bold gold-gradient">
+₹199
+</p>
+</div>
+
+</div>
+
+<a href="#"
+class="btn-gold block text-center py-3 rounded-full">
+Access Prompt Pack
+</a>
+
+</div>
+
+<!-- PRODUCT 2 -->
+
+<div class="card glass rounded-3xl p-8">
+
+<p class="text-[#D4AF37] text-2xl mb-5">
+02
+</p>
+
+<h3 class="playfair text-2xl mb-4">
+AI Operator OS
+</h3>
+
+<p class="text-gray-400 text-sm leading-relaxed mb-7">
+Execution systems, leverage workflows and AI operating structure for modern builders.
+</p>
+
+<div class="flex items-end justify-between mb-7">
+
+<div>
+<p class="text-gray-500 text-sm">
+Starting at
+</p>
+
+<p class="text-3xl font-bold gold-gradient">
+₹499
+</p>
+</div>
+
+</div>
+
+<a href="#"
+class="btn-gold block text-center py-3 rounded-full">
+Unlock System
+</a>
+
+</div>
+
+<!-- PRODUCT 3 -->
+
+<div class="card glass rounded-3xl p-8">
+
+<p class="text-[#D4AF37] text-2xl mb-5">
+03
+</p>
+
+<h3 class="playfair text-2xl mb-4">
+Operator Bundle
+</h3>
+
+<p class="text-gray-400 text-sm leading-relaxed mb-7">
+Complete stack for creators, freelancers and digital operators who want speed.
+</p>
+
+<div class="flex items-end justify-between mb-7">
+
+<div>
+<p class="text-gray-500 text-sm">
+Starting at
+</p>
+
+<p class="text-3xl font-bold gold-gradient">
+₹999
+</p>
+</div>
+
+</div>
+
+<a href="#"
+class="btn-gold block text-center py-3 rounded-full">
+Enter Bundle Vault
+</a>
+
+</div>
+
+</div>
+
+</div>
+</section>
+
+<!-- TRUST SECTION -->
+
+<section class="py-24">
+
+<div class="max-w-5xl mx-auto px-6 text-center">
+
+<p class="smallcap text-[#D4AF37] mb-4">
+Built For Operators
+</p>
+
+<h2 class="playfair text-4xl md:text-6xl leading-tight mb-8">
+
+Built for people who want<br>
+
+<span class="gold-gradient">
+leverage instead of noise.
+</span>
+
+</h2>
+
+<p class="text-gray-400 text-lg leading-relaxed max-w-3xl mx-auto">
+
+Freelancers. Solopreneurs. Founders. Creators.<br>
+This is infrastructure for digital operators who move fast and think long-term.
+
+</p>
+
+</div>
+</section>
+
+<!-- FINAL CTA -->
+
+<section id="access" class="py-24 border-t border-[#D4AF37]/10">
+
+<div class="max-w-5xl mx-auto px-6 text-center">
+
+<h2 class="playfair text-5xl md:text-7xl leading-tight mb-8">
+
+Build Faster.<br>
+
+<span class="gold-gradient">
+Operate Differently.
+</span>
+
+</h2>
+
+<p class="text-gray-400 text-lg max-w-2xl mx-auto mb-10">
+
+Access systems designed for leverage, execution and modern digital income.
+
+</p>
+
+<a href="#vault"
+class="btn-gold px-10 py-5 rounded-full inline-block text-lg">
+Enter AI Operator
+</a>
+
+<p class="mt-12 text-xs tracking-[0.35em] uppercase text-gray-600">
+© 2026 AI Operator
+</p>
+
+</div>
+</section>
+
 </body>
 </html>
